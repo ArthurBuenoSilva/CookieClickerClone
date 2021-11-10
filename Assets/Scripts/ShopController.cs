@@ -87,7 +87,6 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    //Compra um item, desconta o valor na quantidade de cookies e atualiza o preço do item
     public void Click(int id)
     {
         if(Controller.cookie.GetCookies() >= itens[id].GetPrice())
@@ -106,7 +105,6 @@ public class ShopController : MonoBehaviour
         }
     }    
 
-    //Exibe a quantidade e o preço atualizado de cada item
     public void UpdateShop(int id)
     {
         buttons[id].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itens[id].GetName();
