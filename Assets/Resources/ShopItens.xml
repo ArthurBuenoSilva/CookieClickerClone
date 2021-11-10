@@ -1,0 +1,29 @@
+﻿<shop>
+	<itens id = '0'>
+		<item id = '0'>
+			<name>Cursor</name>
+			<basePrice>15</basePrice>
+			<baseMultiplier>0,1</baseMultiplier>
+		</item>
+		<item id = '1'>
+			<name>Grandma</name>
+			<basePrice>100</basePrice>
+			<baseMultiplier>1</baseMultiplier>
+		</item>
+		<item id = '2'>
+			<name>Farm</name>
+			<basePrice>1.100</basePrice>
+			<baseMultiplier>8</baseMultiplier>
+		</item>
+		<item id = '3'>
+			<name>Mine</name>
+			<basePrice>12000</basePrice>
+			<baseMultiplier>47</baseMultiplier>
+		</item>
+		<item id = '4'>
+			<name>Factory</name>
+			<basePrice>130000</basePrice>
+			<baseMultiplier>260</baseMultiplier>
+		</item>
+	</itens>
+</shop>

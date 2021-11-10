@@ -1,0 +1,104 @@
+﻿<upgrades>
+	<cursors id = '0'>
+		<cursor id = '0'>
+			<name>Reinforced index finger</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>100</basePrice>
+			<unlockCondition>1</unlockCondition>
+		</cursor>
+		<cursor id = '1'>
+			<name>Carpal tunnel prevention cream</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>500</basePrice>
+			<unlockCondition>1</unlockCondition>
+		</cursor>
+		<cursor id = '2'>
+			<name>Ambidextrous</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000</basePrice>
+			<unlockCondition>10</unlockCondition>
+		</cursor>
+		<cursor id = '3'>
+			<name>Thousand fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>100000</basePrice>
+			<unlockCondition>25</unlockCondition>
+		</cursor>
+		<cursor id = '4'>
+			<name>Million fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000</basePrice>
+			<unlockCondition>50</unlockCondition>
+		</cursor>
+		<cursor id = '5'>
+			<name>Billion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>100000000</basePrice>
+			<unlockCondition>100</unlockCondition>
+		</cursor>
+		<cursor id = '6'>
+			<name>Trillion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000000</basePrice>
+			<unlockCondition>150</unlockCondition>
+		</cursor>
+		<cursor id = '7'>
+			<name>Quadrillion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000000000</basePrice>
+			<unlockCondition>200</unlockCondition>
+		</cursor>
+		<cursor id = '8'>
+			<name>Quintillion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000000000000</basePrice>
+			<unlockCondition>250</unlockCondition>
+		</cursor>
+		<cursor id = '9'>
+			<name>Sextillion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000000000000000</basePrice>
+			<unlockCondition>300</unlockCondition>
+		</cursor>
+		<cursor id = '10'>
+			<name>Septillion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000000000000000000</basePrice>
+			<unlockCondition>350</unlockCondition>
+		</cursor>
+		<cursor id = '11'>
+			<name>Octillion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000000000000000000000</basePrice>
+			<unlockCondition>400</unlockCondition>
+		</cursor>
+		<cursor id = '12'>
+			<name>Nonillion fingers</name>
+			<description></description>
+			<multiplier>2</multiplier>
+			<basePrice>10000000000000000000000000000</basePrice>
+			<unlockCondition>450</unlockCondition>
+		</cursor>
+	</cursors>
+	<grandmas id = '1'>
+		<grandma id = '13'>
+			<name>Veia</name>
+			<multiplier>2</multiplier>
+			<description></description>
+			<basePrice>1000</basePrice>
+			<unlockCondition>5</unlockCondition>
+		</grandma>
+	</grandmas>
+</upgrades>
