@@ -24,70 +24,70 @@
 		<cursor id = '3'>
 			<name>Thousand fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>0,1</multiplier>
 			<basePrice>100000</basePrice>
 			<unlockCondition>25</unlockCondition>
 		</cursor>
 		<cursor id = '4'>
 			<name>Million fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>5</multiplier>
 			<basePrice>10000000</basePrice>
 			<unlockCondition>50</unlockCondition>
 		</cursor>
 		<cursor id = '5'>
 			<name>Billion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>10</multiplier>
 			<basePrice>100000000</basePrice>
 			<unlockCondition>100</unlockCondition>
 		</cursor>
 		<cursor id = '6'>
 			<name>Trillion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>20</multiplier>
 			<basePrice>10000000000</basePrice>
 			<unlockCondition>150</unlockCondition>
 		</cursor>
 		<cursor id = '7'>
 			<name>Quadrillion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>20</multiplier>
 			<basePrice>10000000000000</basePrice>
 			<unlockCondition>200</unlockCondition>
 		</cursor>
 		<cursor id = '8'>
 			<name>Quintillion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>20</multiplier>
 			<basePrice>10000000000000000</basePrice>
 			<unlockCondition>250</unlockCondition>
 		</cursor>
 		<cursor id = '9'>
 			<name>Sextillion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>20</multiplier>
 			<basePrice>10000000000000000000</basePrice>
 			<unlockCondition>300</unlockCondition>
 		</cursor>
 		<cursor id = '10'>
 			<name>Septillion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>20</multiplier>
 			<basePrice>10000000000000000000000</basePrice>
 			<unlockCondition>350</unlockCondition>
 		</cursor>
 		<cursor id = '11'>
 			<name>Octillion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>20</multiplier>
 			<basePrice>10000000000000000000000000</basePrice>
 			<unlockCondition>400</unlockCondition>
 		</cursor>
 		<cursor id = '12'>
 			<name>Nonillion fingers</name>
 			<description></description>
-			<multiplier>2</multiplier>
+			<multiplier>20</multiplier>
 			<basePrice>10000000000000000000000000000</basePrice>
 			<unlockCondition>450</unlockCondition>
 		</cursor>

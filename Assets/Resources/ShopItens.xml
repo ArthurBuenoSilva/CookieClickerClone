@@ -25,5 +25,25 @@
 			<basePrice>130000</basePrice>
 			<baseMultiplier>260</baseMultiplier>
 		</item>
+		<item id = '5'>
+			<name>Bank</name>
+			<basePrice>1400000</basePrice>
+			<baseMultiplier>1400</baseMultiplier>
+		</item>
+		<item id = '6'>
+			<name>Temple</name>
+			<basePrice>20000000</basePrice>
+			<baseMultiplier>7800</baseMultiplier>
+		</item>
+		<item id = '7'>
+			<name>Wizard Tower</name>
+			<basePrice>330000000</basePrice>
+			<baseMultiplier>44000</baseMultiplier>
+		</item>
+		<item id = '8'>
+			<name>Shipment</name>
+			<basePrice>5100000000</basePrice>
+			<baseMultiplier>260000</baseMultiplier>
+		</item>
 	</itens>
 </shop>

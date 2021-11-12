@@ -14,20 +14,22 @@ public class UpgradeController : MonoBehaviour
         private readonly string name;
         private readonly string img;
         private readonly string description;
-        private readonly double multiplier;
+        private double multiplier;
+        private double baseMultiplier;
         private double price;
         private readonly double basePrice;
         private readonly double unlockCondition;
         private bool isUnlocked;
 
-        public Upgrades(int id, int idReference, string name, string img,string description, double multiplier, double basePrice, double unlockCondition)
+        public Upgrades(int id, int idReference, string name, string img,string description, double baseMultiplier, double basePrice, double unlockCondition)
         {
             this.id = id;
             this.idReference = idReference;
             this.name = name;   
             this.img = img;
             this.description = description;
-            this.multiplier = multiplier;
+            this.multiplier = baseMultiplier;
+            this.baseMultiplier = baseMultiplier;
             this.price = basePrice;
             this.basePrice = basePrice;
             this.unlockCondition = unlockCondition;
@@ -45,6 +47,12 @@ public class UpgradeController : MonoBehaviour
         public string GetDescription() { return description; }
 
         public double GetMultiplier() { return multiplier; }
+
+        public void SetMultiplier(double multiplier) { this.multiplier = multiplier; }
+
+        public double GetBaseMultiplier() { return baseMultiplier; }
+
+        public void SetBaseMultiplier(double baseMultiplier) { this.baseMultiplier = baseMultiplier; }
 
         public double GetPrice() { return price; }
 
@@ -68,6 +76,8 @@ public class UpgradeController : MonoBehaviour
     private XML xml;
 
     public RectTransform parent;
+    public double nonCursor = 0;
+    public double multiplier = 1;
 
     private void Start()
     {
@@ -106,7 +116,7 @@ public class UpgradeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        
     }
 
     public void Click(int id)
@@ -116,9 +126,35 @@ public class UpgradeController : MonoBehaviour
             int idReference = upgrades[id].GetIdReference();
 
             Controller.cookie.SetCookies(Controller.cookie.GetCookies() - upgrades[id].GetPrice());
-            Controller.cookie.SetMultiplier(idReference == 0 ? Controller.cookie.GetMultiplier() * upgrades[id].GetMultiplier() : Controller.cookie.GetMultiplier());
 
-            shop.itens[idReference].SetMultiplier(upgrades[id].GetMultiplier());
+            if(idReference == 0)
+            {
+                if (upgrades[id].GetId() > 3)
+                {
+                    multiplier *= upgrades[id].GetMultiplier();
+                    UpdateUpgradeThousand();
+                    Controller.cookie.SetMultiplier(Controller.cookie.GetMultiplier() + upgrades[id].GetMultiplier());
+                }
+                else if (upgrades[id].GetId() < 3)
+                {
+                    Controller.cookie.SetMultiplier(Controller.cookie.GetMultiplier() * upgrades[id].GetMultiplier());
+
+                    shop.itens[idReference].SetMultiplier(shop.itens[idReference].GetMultiplier() * upgrades[id].GetMultiplier());
+                }
+                else
+                {
+                    UpdateUpgradeThousand();
+                    shop.itens[idReference].SetMultiplier(shop.itens[idReference].GetMultiplier() + upgrades[id].GetMultiplier());
+                    Controller.cookie.SetMultiplier(Controller.cookie.GetMultiplier() + upgrades[id].GetMultiplier());
+                }
+            }
+            else
+            {
+                shop.itens[idReference].SetMultiplier(shop.itens[idReference].GetMultiplier() * upgrades[id].GetMultiplier());
+            }
+
+            Debug.Log(shop.itens[1].GetMultiplier());
+
             shop.UpdateShop(idReference);
 
             upgrades[id].SetIsUnlocked(true);
@@ -130,5 +166,13 @@ public class UpgradeController : MonoBehaviour
     {
         buttons[id].gameObject.SetActive((shop.itens[upgrades[id].GetIdReference()].GetQuantity() >= upgrades[id].GetUnlockCondition() && !upgrades[id].GetIsUnlocked()) ? true : false);
         buttons[id].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = format.NumberFormat(upgrades[id].GetPrice());
+    }
+
+    public void UpdateUpgradeThousand()
+    {
+        double oldValue = upgrades[3].GetMultiplier();
+        upgrades[3].SetMultiplier(upgrades[3].GetBaseMultiplier() * (nonCursor == 0 ? 1 : nonCursor) * multiplier);
+        shop.itens[0].SetMultiplier(shop.itens[0].GetMultiplier() + (upgrades[3].GetMultiplier() - oldValue));
+        shop.UpdateShop(0);
     }
 }

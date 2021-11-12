@@ -45,7 +45,7 @@ public class ShopController : MonoBehaviour
 
         public double GetMultiplier() { return multiplier; }
 
-        public void SetMultiplier(double multiplier) { this.multiplier *= multiplier; }
+        public void SetMultiplier(double multiplier) { this.multiplier = multiplier; }
 
         public double GetBaseMultiplier() { return baseMultiplier; }
 
@@ -60,8 +60,10 @@ public class ShopController : MonoBehaviour
     private XML xml;
 
     private List<Button> buttons = new List<Button>();
+    public List<Button> buttonsMultiplier = new List<Button>();
 
     public RectTransform parent;
+    private int multiplier = 1;
     
     private void Start()
     {
@@ -89,19 +91,28 @@ public class ShopController : MonoBehaviour
 
     public void Click(int id)
     {
-        if(Controller.cookie.GetCookies() >= itens[id].GetPrice())
-        {
-            Controller.cookie.SetCookies(Controller.cookie.GetCookies() - itens[id].GetPrice());
+        double price = (itens[id].GetBasePrice() * (Mathf.Pow(1.15f, itens[id].GetQuantity() + multiplier) - Mathf.Pow(1.15f, itens[id].GetQuantity())) / 0.15f);
 
-            itens[id].SetQuantity(1);
-            itens[id].SetPrice(itens[id].GetPrice() * 1.15f);     
-            
-            foreach(var upgrade in upgrade.upgrades)
+        if (Controller.cookie.GetCookies() >= price)
+        {
+            Controller.cookie.SetCookies(Controller.cookie.GetCookies() - price);
+
+            itens[id].SetQuantity(multiplier);
+            itens[id].SetPrice(price);
+
+            if(id != 0)
+            {
+                upgrade.nonCursor += multiplier;
+                upgrade.UpdateUpgradeThousand();
+            }            
+
+            foreach (var upgrade in upgrade.upgrades)
             {
                 this.upgrade.UpdateUpgrades(upgrade.GetId());
             }
 
             UpdateShop(id);
+
         }
     }    
 
@@ -109,7 +120,18 @@ public class ShopController : MonoBehaviour
     {
         buttons[id].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itens[id].GetName();
         buttons[id].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = itens[id].GetQuantity().ToString();
-        buttons[id].transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = format.NumberFormat(itens[id].GetPrice());
+        buttons[id].transform.GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "x" + multiplier.ToString();
+        buttons[id].transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = format.NumberFormat(itens[id].GetBasePrice() * (Mathf.Pow(1.15f, itens[id].GetQuantity() + multiplier) - Mathf.Pow(1.15f, itens[id].GetQuantity())) / 0.15f);
         buttons[id].transform.GetChild(3).GetChild(2).GetComponent<TextMeshProUGUI>().text = format.NumberFormat(itens[id].GetMultiplier() * itens[id].GetQuantity());
+    }
+
+    public void SetButtonMultiplier(int multiplier)
+    {
+        this.multiplier = multiplier;
+
+        foreach (Item item in itens)
+        {
+            UpdateShop(item.GetId());
+        }
     }
 }
