@@ -14,4 +14,4 @@ Right now I have the following features working:
 
 Basically I have a fully functional game that just needs some finishing touches.
 
-
+So far the biggest challenge was to think of a good solution to fix and balance the upgrade system, it was a lot of work but finally I have a fully functional and very well optimized upgrade system.
