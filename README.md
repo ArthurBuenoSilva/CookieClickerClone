@@ -9,7 +9,7 @@ Right now I have the following features working:
   <li>Base algorithm</li>
   <li>Shop system</li>
   <li>Upgrade system</li>
-  <li>Nuber format</li>
+  <li>Number format</li>
 </ul>
 
 Basically I have a fully functional game that just needs some finishing touches.
