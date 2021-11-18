@@ -53,14 +53,13 @@ public class ShopController : MonoBehaviour
     }
 
     public List<Item> itens = new List<Item>();
+    private List<Button> buttons = new List<Button>();
+    public List<Button> buttonsMultiplier = new List<Button>();
 
     private Controller Controller;
     private UpgradeController upgrade;
     private Format format;
-    private XML xml;
-
-    private List<Button> buttons = new List<Button>();
-    public List<Button> buttonsMultiplier = new List<Button>();
+    private XML xml;    
 
     public RectTransform parent;
     private int multiplier = 1;
@@ -81,7 +80,7 @@ public class ShopController : MonoBehaviour
                      )));
         }
 
-        buttons = Controller.InstatiateButtons(parent, Resources.Load<GameObject>("btnShop"), itens.Count, "shop");
+        buttons = Controller.InstatiateButtons(parent, Resources.Load<GameObject>("Buttons/btnShop"), itens.Count, "shop");
 
         foreach (Item item in itens)
         {
@@ -123,15 +122,5 @@ public class ShopController : MonoBehaviour
         buttons[id].transform.GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "x" + multiplier.ToString();
         buttons[id].transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = format.NumberFormat(itens[id].GetBasePrice() * (Mathf.Pow(1.15f, itens[id].GetQuantity() + multiplier) - Mathf.Pow(1.15f, itens[id].GetQuantity())) / 0.15f);
         buttons[id].transform.GetChild(3).GetChild(2).GetComponent<TextMeshProUGUI>().text = format.NumberFormat(itens[id].GetMultiplier() * itens[id].GetQuantity());
-    }
-
-    public void SetButtonMultiplier(int multiplier)
-    {
-        this.multiplier = multiplier;
-
-        foreach (Item item in itens)
-        {
-            UpdateShop(item.GetId());
-        }
     }
 }

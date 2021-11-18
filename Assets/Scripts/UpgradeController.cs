@@ -82,8 +82,8 @@ public class UpgradeController : MonoBehaviour
     private void Start()
     {
         Controller = GameObject.FindObjectOfType(typeof(Controller)) as Controller;
-        shop = GameObject.FindObjectOfType(typeof(ShopController)) as ShopController;
         format = GameObject.FindObjectOfType(typeof(Format)) as Format;
+        shop = GameObject.FindObjectOfType(typeof(ShopController)) as ShopController;        
         xml = GameObject.FindObjectOfType(typeof(XML)) as XML;
 
         List<List<Dictionary<string, string>>> allTextDic = new List<List<Dictionary<string, string>>>();
@@ -106,17 +106,12 @@ public class UpgradeController : MonoBehaviour
             }            
         }
 
-        buttons = Controller.InstatiateButtons(parent, Resources.Load<GameObject>("btnUpgrades"), upgrades.Count, "upgrade");
+        buttons = Controller.InstatiateButtons(parent, Resources.Load<GameObject>("Buttons/btnUpgrades"), upgrades.Count, "upgrade");
 
         foreach(Upgrades upgrade in upgrades)
         {    
             UpdateUpgrades(upgrade.GetId());
         }
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     public void Click(int id)
@@ -138,7 +133,6 @@ public class UpgradeController : MonoBehaviour
                 else if (upgrades[id].GetId() < 3)
                 {
                     Controller.cookie.SetMultiplier(Controller.cookie.GetMultiplier() * upgrades[id].GetMultiplier());
-
                     shop.itens[idReference].SetMultiplier(shop.itens[idReference].GetMultiplier() * upgrades[id].GetMultiplier());
                 }
                 else
@@ -152,8 +146,6 @@ public class UpgradeController : MonoBehaviour
             {
                 shop.itens[idReference].SetMultiplier(shop.itens[idReference].GetMultiplier() * upgrades[id].GetMultiplier());
             }
-
-            Debug.Log(shop.itens[1].GetMultiplier());
 
             shop.UpdateShop(idReference);
 

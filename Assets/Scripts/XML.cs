@@ -9,7 +9,7 @@ public class XML : MonoBehaviour
 {
     public List<Dictionary<string, string>> parseFile(string fileName, string keyOne, string keyTwo, string keyThree)
     {
-        TextAsset txtXmlAsset = Resources.Load<TextAsset>(fileName);
+        TextAsset txtXmlAsset = Resources.Load<TextAsset>("XMLs/" + fileName);
         var doc = XDocument.Parse(txtXmlAsset.text);
 
         var allDict = doc.Element(keyOne).Elements(keyTwo).Elements(keyThree);

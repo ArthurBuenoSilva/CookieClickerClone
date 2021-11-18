@@ -35,13 +35,14 @@ public class Controller : MonoBehaviour
     private ShopController shop;
     private UpgradeController upgrade;
     private Format format;
+    private ObjectPool pool;
 
     public Cookie cookie = new Cookie();    
 
     public GameObject txt_CookieQuantity;
     public GameObject txt_CookiePerSecond;
-    public Vector3 mousePos;
     public GameObject canvas;
+    public Vector3 mousePos;
 
     private float elapsed = 0;
 
@@ -49,7 +50,8 @@ public class Controller : MonoBehaviour
     {
         shop = GameObject.FindObjectOfType(typeof(ShopController)) as ShopController;
         upgrade = GameObject.FindObjectOfType(typeof(UpgradeController)) as UpgradeController;
-        format = GameObject.FindObjectOfType(typeof(Format)) as Format;   
+        format = GameObject.FindObjectOfType(typeof(Format)) as Format; 
+        pool = GameObject.FindObjectOfType(typeof(ObjectPool)) as ObjectPool;  
     }
 
     private void FixedUpdate()
@@ -69,6 +71,13 @@ public class Controller : MonoBehaviour
         SetCookiePerSecond(cookie.GetCookiesPerSecond());
     }
 
+    public Vector3 MousePosInWorldSpace()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        return Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+    }
+
+    /* ------ Clicks ------ */
     public void Click()
     {
         cookie.SetCookies(cookie.GetCookies() + (1 * cookie.GetMultiplier()));
@@ -99,6 +108,7 @@ public class Controller : MonoBehaviour
         txt_CookiePerSecond.GetComponent<TextMeshProUGUI>().text = "per second: " + format.NumberFormat(cookie);
     }
 
+    /* ------ Instantiate Objects ------ */
     public List<Button> InstatiateButtons(RectTransform parent, GameObject prefab, int quantity, string name)
     {
         List<Button> buttons = new List<Button>();
@@ -126,17 +136,22 @@ public class Controller : MonoBehaviour
 
     public void InstatiateCookie()
     {
-        Image tempCookie = Instantiate(Resources.Load<Image>("cookiePrefab"));
-        tempCookie.transform.SetParent(canvas.transform, false);
-        tempCookie.transform.position = mousePos;
-        tempCookie.transform.localScale = new Vector3(1, 1, 1);
-        Destroy(tempCookie.gameObject, 1);
+        Image tempCookie = pool.GetPooledObject();
+
+        if(tempCookie != null)
+        {
+            tempCookie.gameObject.SetActive(true);
+            tempCookie.transform.position = mousePos;
+            tempCookie.transform.localScale = new Vector3(1, 1, 1);
+
+            StartCoroutine(DeactivateObj(tempCookie));
+        }      
     }
 
-    public Vector3 MousePosInWorldSpace()
+    IEnumerator DeactivateObj(Image tempCookie)
     {
-        Vector3 mousePos = Input.mousePosition;
-        return Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+        yield return new WaitForSeconds(1f);
+        tempCookie.gameObject.SetActive(false);
     }
 
     /* ------ 😈 HACK 😈 ------ */
